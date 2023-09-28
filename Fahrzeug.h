@@ -10,6 +10,8 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <math.h>
 
 extern double dGlobaleZeit;
 class Fahrzeug
@@ -24,6 +26,7 @@ protected:
 	double p_dGesamtStrecke;
 	double p_dGesamtZeit;
 	double p_dZeit;
+	double p_dGesamtVerbrauch;
 
 
 public:
@@ -35,6 +38,8 @@ public:
 	virtual void vKopf() const;
 	virtual void vAusgeben() const;
 	virtual void vSimulieren();
+	virtual double dTanken(double dMenge);
+	bool EpsilonEquals(double dNum1, double dNum2);
 };
 
 

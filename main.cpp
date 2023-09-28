@@ -10,6 +10,8 @@
 #include <vector>
 #include <ctime>
 #include "Fahrzeug.h"
+#include "Fahrrad.h"
+#include "PKW.h"
 
 double dGlobaleZeit = 0.0;
 
@@ -66,6 +68,34 @@ void vAufgabe_1a()
 int main(void)
 {
 	//vAufgabe_1();
-	vAufgabe_1a();
+	//vAufgabe_1a();
+	PKW Auto("Auto", 80, 50, 4.5);
+
+	std::cout << "\n\n";
+	Auto.vKopf();
+	std::cout << "\n";
+	Auto.vAusgeben();
+
+	dGlobaleZeit = 2.5;
+	Auto.vSimulieren();
+
+	std::cout << "\n\n";
+	Auto.vKopf();
+	std::cout << "\n";
+	Auto.vAusgeben();
+
+	Auto.dTanken(3);
+
+	std::cout << "\n\n";
+	Auto.vKopf();
+	std::cout << "\n";
+	Auto.vAusgeben();
+
+	Auto.dTanken();
+
+	std::cout << "\n\n";
+	Auto.vKopf();
+	std::cout << "\n";
+	Auto.vAusgeben();
 }
 

@@ -17,9 +17,14 @@ Fahrzeug::Fahrzeug()
  p_dMaxGeschwindigkeit(10),
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
- p_dZeit(0)
+ p_dZeit(0),
+ p_dGesamtVerbrauch(0)
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this->p_iID << std::endl;
+	std::cout <<
+			"created | name: " 	<< this->	p_sName <<
+			" | ID: " 			<< this-> 	p_iID <<
+			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
+			std::endl;
 }
 
 Fahrzeug::Fahrzeug(std::string sName)
@@ -28,20 +33,30 @@ Fahrzeug::Fahrzeug(std::string sName)
  p_dMaxGeschwindigkeit(10),
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
- p_dZeit(0)
+ p_dZeit(0),
+ p_dGesamtVerbrauch(0)
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this->p_iID << std::endl;
+	std::cout <<
+			"created | name: " 	<< this->	p_sName <<
+			" | ID: " 			<< this-> 	p_iID <<
+			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
+			std::endl;
 }
 
-Fahrzeug::Fahrzeug(std::string sName, double maxGeschwindigkeit)
+Fahrzeug::Fahrzeug(std::string sName, double dmaxGeschwindigkeit)
 :p_sName(sName),
  p_iID(++Fahrzeug::p_iMaxID),
- p_dMaxGeschwindigkeit(maxGeschwindigkeit < 0 ? abs(maxGeschwindigkeit) : maxGeschwindigkeit),
+ p_dMaxGeschwindigkeit(dmaxGeschwindigkeit < 0 ? abs(dmaxGeschwindigkeit) : dmaxGeschwindigkeit),
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
- p_dZeit(0)
+ p_dZeit(0),
+ p_dGesamtVerbrauch(0)
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this-> p_iID << " | MaxGeschw.: " << this->p_dMaxGeschwindigkeit << std::endl;
+	std::cout <<
+			"created | name: " 	<< this->	p_sName <<
+			" | ID: " 			<< this-> 	p_iID <<
+			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
+			std::endl;
 }
 
 Fahrzeug::~Fahrzeug()
@@ -51,19 +66,14 @@ Fahrzeug::~Fahrzeug()
 void Fahrzeug::vKopf() const
 {
 	std::cout <<
-	std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) <<
-	std::setw( 4) << "ID" << " " <<
-	std::resetiosflags(std::ios::right) << std::setiosflags(std::ios::left) <<
-	std::setw(10) << std::setprecision(2) << "Name" <<
-	std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) << std::fixed <<
-	std::setw(20) << std::setprecision(2) << "MaxGeschwindigkeit" <<
-	std::setw(15) << "GesamtStrecke" <<
-	"\n";
-	int a = 1 + 4 + 10 + 20 + 15;
-	for(int i = 0; i < a; i++)
-	{
-		std::cout << "-";
-	}
+		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) <<
+		std::setw( 4) << "ID" << " " <<
+		std::resetiosflags(std::ios::right) << std::setiosflags(std::ios::left) <<
+		std::setw(10) << std::setprecision(2) << "Name" <<
+		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) << std::fixed <<
+		std::setw(20) << std::setprecision(2) << "MaxGeschwindigkeit" <<
+		std::setw(15) << "GesamtStrecke";
+
 }
 
 void Fahrzeug::vAusgeben() const
@@ -89,6 +99,24 @@ void Fahrzeug::vSimulieren()
 		p_dGesamtZeit = dGlobaleZeit;
 	}
 }
+
+double Fahrzeug::dTanken(double dMenge)
+{
+	return 0;
+}
+
+bool Fahrzeug::EpsilonEquals(double dNum1, double dNum2)
+{
+	if(abs(dNum1 - dNum2) < std::pow(10,-25.0))
+	{
+		return true;
+	}
+	return false;
+}
+
+
+
+
 
 
 
