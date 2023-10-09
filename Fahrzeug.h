@@ -27,6 +27,7 @@ protected:
 	double p_dGesamtZeit;
 	double p_dZeit;
 	double p_dGesamtVerbrauch;
+	double p_dGeschwindigkeit;
 
 
 public:
@@ -35,11 +36,14 @@ public:
 	Fahrzeug(std::string sName, double maxGeschwindigkeit);
 	virtual ~Fahrzeug();
 
+	double getdZeit();
+
 	virtual void vKopf() const;
 	virtual void vAusgeben() const;
 	virtual void vSimulieren();
 	virtual double dTanken(double dMenge);
 	bool EpsilonEquals(double dNum1, double dNum2);
+	virtual double dGeschwindigkeit();
 };
 
 

@@ -62,9 +62,6 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit, double dTankvolumen, dou
  p_dTankinhalt(dTankvolumen / 2)
 {
 	std::cout <<
-			"created | name: " 	<< this->	p_sName <<
-			" | ID: " 			<< this-> 	p_iID <<
-			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
 			" | Volumen: " 		<< this->	p_dTankvolumen <<
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
 			" | Inhalt: " 		<< this->	p_dTankinhalt <<
@@ -111,7 +108,6 @@ void PKW::vSimulieren()
 }
 
 double PKW::dTanken(double dMenge = std::numeric_limits<double>::infinity())
-//Defaultvalue Fixen
 {
 	if(dMenge > p_dTankvolumen - p_dTankinhalt)
 	{

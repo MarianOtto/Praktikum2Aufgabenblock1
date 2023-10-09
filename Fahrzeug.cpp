@@ -63,15 +63,21 @@ Fahrzeug::~Fahrzeug()
 {
 }
 
+double Fahrzeug::getdZeit()
+{
+	return p_dZeit;
+}
+
 void Fahrzeug::vKopf() const
 {
 	std::cout <<
 		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) <<
 		std::setw( 4) << "ID" << " " <<
 		std::resetiosflags(std::ios::right) << std::setiosflags(std::ios::left) <<
-		std::setw(10) << std::setprecision(2) << "Name" <<
+		std::setw(10) << "Name" <<
 		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) << std::fixed <<
-		std::setw(20) << std::setprecision(2) << "MaxGeschwindigkeit" <<
+		std::setw(20) << "MaxGeschwindigkeit" <<
+		std::setw(20) << "Mom.Geschwindigkeit" <<
 		std::setw(15) << "GesamtStrecke";
 
 }
@@ -80,21 +86,23 @@ void Fahrzeug::vAusgeben() const
 {
 	std::cout.precision(2);
 	std::cout <<
-	std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) <<
-	std::setw( 4) << p_iID << " " <<
-	std::resetiosflags(std::ios::right) << std::setiosflags(std::ios::left) <<
-	std::setw(10) << std::setprecision(2) << p_sName <<
-	std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) << std::fixed <<
-	std::setw(20) << std::setprecision(2) << p_dMaxGeschwindigkeit <<
-	std::setw(15) << p_dGesamtStrecke;
+		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) <<
+		std::setw( 4) << p_iID << " " <<
+		std::resetiosflags(std::ios::right) << std::setiosflags(std::ios::left) <<
+		std::setw(10) << p_sName <<
+		std::resetiosflags(std::ios::left) << std::setiosflags(std::ios::right) << std::fixed <<
+		std::setw(20) << p_dMaxGeschwindigkeit <<
+		std::setw(20) << p_dGeschwindigkeit <<
+		std::setw(15) << p_dGesamtStrecke;
 }
 
 void Fahrzeug::vSimulieren()
 {
 	if(dGlobaleZeit != p_dZeit)
 	{
+		p_dGeschwindigkeit = dGeschwindigkeit();
 		double deltaT = dGlobaleZeit - p_dZeit;
-		p_dGesamtStrecke += deltaT * p_dMaxGeschwindigkeit;
+		p_dGesamtStrecke += deltaT * p_dGeschwindigkeit;
 		p_dZeit = dGlobaleZeit;
 		p_dGesamtZeit = dGlobaleZeit;
 	}
@@ -114,7 +122,10 @@ bool Fahrzeug::EpsilonEquals(double dNum1, double dNum2)
 	return false;
 }
 
-
+double Fahrzeug::dGeschwindigkeit()
+{
+	return p_dMaxGeschwindigkeit;
+}
 
 
 

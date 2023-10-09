@@ -39,13 +39,19 @@ void Fahrrad::vAusgeben() const
 	Fahrzeug::vAusgeben();
 }
 
-void Fahrrad::vSimulieren()
+double Fahrrad::dGeschwindigkeit()
 {
-	if(dGlobaleZeit != p_dZeit)
+	int dDeltaS = p_dGesamtStrecke / 20;
+	p_dGeschwindigkeit = p_dMaxGeschwindigkeit * std::pow(0.9, dDeltaS);
+	if(p_dGeschwindigkeit < 12)
 	{
-		double deltaT = dGlobaleZeit - p_dZeit;
-		p_dGesamtStrecke += deltaT * p_dMaxGeschwindigkeit;
-		p_dZeit = dGlobaleZeit;
-		p_dGesamtZeit = dGlobaleZeit;
+		p_dGeschwindigkeit = 12;
 	}
+	return p_dGeschwindigkeit;
 }
+
+
+
+
+
+

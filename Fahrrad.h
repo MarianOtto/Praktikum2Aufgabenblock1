@@ -20,7 +20,7 @@ public:
 
 	void vKopf() const;
 	void vAusgeben() const;
-	void vSimulieren();
+	double dGeschwindigkeit();
 };
 
 #endif /* FAHRRAD_H_ */
