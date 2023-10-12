@@ -6,6 +6,7 @@
  */
 #ifndef FAHRZEUG_H_
 #define FAHRZEUG_H_
+#define DEBUG 0
 
 #include <iomanip>
 #include <iostream>
@@ -22,7 +23,7 @@ private:
 protected:
 	std::string p_sName;
 	const int p_iID;
-	const double p_dMaxGeschwindigkeit;
+	double p_dMaxGeschwindigkeit;
 	double p_dGesamtStrecke;
 	double p_dGesamtZeit;
 	double p_dZeit;
@@ -31,17 +32,32 @@ protected:
 
 
 public:
+	//Constructor etc.
 	Fahrzeug();
 	Fahrzeug(std::string sName);
 	Fahrzeug(std::string sName, double maxGeschwindigkeit);
 	virtual ~Fahrzeug();
+	Fahrzeug(const Fahrzeug&) = delete;
 
-	double getdZeit();
+	//Getter
+	double getdZeit() const;
+	double getdGesamtStrecke() const;
+	std::string getsName() const;
+	double getdMaxGeschwindigkeit() const;
 
+	//Setters
+	void setsName(std::string Name);
+	void setdMaxGeschwindigkeit(double MaxGeschwindigkeit);
+
+	//Operator Overload
+	virtual bool operator<(const Fahrzeug& Fahrzeug);
+	void operator=(const Fahrzeug& Fahrzeug);
+
+	//Other
 	virtual void vKopf() const;
 	virtual void vAusgeben() const;
 	virtual void vSimulieren();
-	virtual double dTanken(double dMenge);
+	virtual double dTanken(double dMenge = std::numeric_limits<double>::infinity());
 	bool EpsilonEquals(double dNum1, double dNum2);
 	virtual double dGeschwindigkeit();
 };

@@ -11,6 +11,8 @@
 
 int Fahrzeug::p_iMaxID = 0;
 
+//BEGIN Constructors
+
 Fahrzeug::Fahrzeug()
 :p_sName("0"),
  p_iID(++Fahrzeug::p_iMaxID),
@@ -18,13 +20,16 @@ Fahrzeug::Fahrzeug()
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
  p_dZeit(0),
- p_dGesamtVerbrauch(0)
+ p_dGesamtVerbrauch(0),
+ p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
+#if DEBUG ==1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
 			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
 			std::endl;
+#endif
 }
 
 Fahrzeug::Fahrzeug(std::string sName)
@@ -34,13 +39,16 @@ Fahrzeug::Fahrzeug(std::string sName)
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
  p_dZeit(0),
- p_dGesamtVerbrauch(0)
+ p_dGesamtVerbrauch(0),
+ p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
+#if DEBUG == 1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
 			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
 			std::endl;
+#endif
 }
 
 Fahrzeug::Fahrzeug(std::string sName, double dmaxGeschwindigkeit)
@@ -50,23 +58,86 @@ Fahrzeug::Fahrzeug(std::string sName, double dmaxGeschwindigkeit)
  p_dGesamtStrecke(0),
  p_dGesamtZeit(0),
  p_dZeit(0),
- p_dGesamtVerbrauch(0)
+ p_dGesamtVerbrauch(0),
+ p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
+#if DEBUG == 1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
 			" | MaxGeschw.: " 	<< this->	p_dMaxGeschwindigkeit <<
 			std::endl;
+#endif
 }
 
 Fahrzeug::~Fahrzeug()
 {
+#if DEBUG == 1
+	std::cout <<
+			"Destroyed | name: " 	<< this-> p_sName <<
+			" | ID: "				<< this-> p_iID <<
+			std::endl;
+#endif
 }
 
-double Fahrzeug::getdZeit()
+//END Constructors etc.
+
+//BEGIN Getters
+
+double Fahrzeug::getdZeit() const
 {
 	return p_dZeit;
 }
+
+double Fahrzeug::getdGesamtStrecke() const
+{
+	return p_dGesamtStrecke;
+}
+
+std::string Fahrzeug::getsName() const
+{
+	return p_sName;
+}
+
+double Fahrzeug::getdMaxGeschwindigkeit() const
+{
+	return p_dMaxGeschwindigkeit;
+}
+//END Getters
+
+//BEGIN Setters
+
+void Fahrzeug::setsName(std::string Name)
+{
+	p_sName = Name;
+}
+
+void Fahrzeug::setdMaxGeschwindigkeit(double MaxGeschwindigkeit)
+{
+	p_dMaxGeschwindigkeit = MaxGeschwindigkeit;
+}
+
+//END Setters
+//BEGIN Operator Overload
+
+bool Fahrzeug::operator<(const Fahrzeug& Fahrzeug2)
+{
+	if(p_dGesamtStrecke < Fahrzeug2.getdGesamtStrecke())
+	{
+		return true;
+	}
+	return false;
+}
+
+void Fahrzeug::operator=(const Fahrzeug& Fahrzeug)
+{
+	p_dMaxGeschwindigkeit = Fahrzeug.getdMaxGeschwindigkeit();
+	p_sName = Fahrzeug.getsName();
+}
+
+//END Operator Overload
+
+//BEGIN Other
 
 void Fahrzeug::vKopf() const
 {
@@ -124,11 +195,11 @@ bool Fahrzeug::EpsilonEquals(double dNum1, double dNum2)
 
 double Fahrzeug::dGeschwindigkeit()
 {
+
 	return p_dMaxGeschwindigkeit;
 }
 
-
-
+//END Other
 
 
 

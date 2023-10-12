@@ -7,27 +7,55 @@
 
 #include "Fahrrad.h"
 
+//BEGIN Constructors etc.
+
 Fahrrad::Fahrrad()
 :Fahrzeug::Fahrzeug()
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this->p_iID << std::endl;
+#if DEBUG == 1
+	std::cout <<
+			"created | name: " 	<< this->p_sName 	<<
+			" | ID: " 			<< this->p_iID 		<<
+			std::endl;
+#endif
 }
 
 Fahrrad::Fahrrad(std::string sName)
 :Fahrzeug::Fahrzeug(sName)
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this->p_iID << std::endl;
+#if DEBUG == 1
+	std::cout <<
+			"created | name: " 	<< this->p_sName 	<<
+			" | ID: " 			<< this->p_iID 		<<
+			std::endl;
+#endif
 }
 
 Fahrrad::Fahrrad(std::string sName, double maxGeschwindigkeit)
 :Fahrzeug::Fahrzeug(sName, maxGeschwindigkeit)
 {
-	std::cout << "created | name: " << this->p_sName << " | ID: " << this-> p_iID << " | MaxGeschw.: " << this->p_dMaxGeschwindigkeit << std::endl;
+#if DEBUG == 1
+	std::cout <<
+			"created | name: " 	<< this->p_sName 				<<
+			" | ID: " 			<< this-> p_iID 				<<
+			" | MaxGeschw.: " 	<< this->p_dMaxGeschwindigkeit 	<<
+			std::endl;
+#endif
 }
 
 Fahrrad::~Fahrrad()
 {
+#if DEBUG == 1
+	std::cout <<
+			"Destroyed | name: " 	<< this-> p_sName <<
+			" | ID: "				<< this-> p_iID <<
+			std::endl;
+#endif
 }
+
+//END Constructors etc.
+
+//BEGIN Other
 
 void Fahrrad::vKopf() const
 {
@@ -50,7 +78,7 @@ double Fahrrad::dGeschwindigkeit()
 	return p_dGeschwindigkeit;
 }
 
-
+//END Other
 
 
 

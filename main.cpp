@@ -5,15 +5,34 @@
  *      Author: marian
  */
 
+#define TEST 0;
+
 #include <iostream>
 #include <memory>
 #include <vector>
 #include <ctime>
+#include <stdlib.h>
+#include <time.h>
 #include "Fahrzeug.h"
 #include "Fahrrad.h"
 #include "PKW.h"
 
 double dGlobaleZeit = 0.0;
+
+bool bEpsilonEquals(double dNum1, double dNum2)
+{
+	if(abs(dNum1 - dNum2) < std::pow(10,-25.0))
+	{
+		return true;
+	}
+	return false;
+}
+
+std::ostream& operator<<(std::ostream& ostr, const Fahrzeug& Fahrzeug)
+{
+	Fahrzeug.vAusgeben();
+	return ostr;
+}
 
 void vAufgabe_1()
 {
@@ -40,6 +59,15 @@ void vAufgabe_1()
 	vector_shared.clear();
 }
 
+void vRunTests()
+{
+
+}
+
+void vTestdTanken()
+{
+	double dMenge = static_cast <double> (rand()) / static_cast<double>(RAND_MAX / 100);
+}
 void vAufgabe_1a()
 {
 	std::unique_ptr<Fahrzeug> Auto = std::make_unique<Fahrzeug>("Auto", 130);
@@ -77,21 +105,26 @@ void vAufgabe_2()
 	std::cout << std::endl;
 	std::vector<std::unique_ptr<Fahrzeug>> vector_Fahrzeug;
 
-	for(int i = 1; i <= iCountPKW; i++)
+	if(iCountPKW > 0)
 	{
-		std::string sName = "PKW" + std::to_string(i);
-		std::cout << sName;
-		std::unique_ptr<PKW> PKWs = std::make_unique<PKW>(sName, (double) (rand() % 5 * 20 + 20), (double) (rand() % 5 * 10 + 25), (double) (rand() % 5) + 1);
-		vector_Fahrzeug.push_back(std::move(PKWs));
+		for(int i = 1; i <= iCountPKW; i++)
+		{
+			std::string sName = "PKW" + std::to_string(i);
+			std::cout << sName;
+			std::unique_ptr<PKW> PKWs = std::make_unique<PKW>(sName, (double) (rand() % 5 * 20 + 20), (double) (rand() % 5 * 10 + 25), (double) (rand() % 5) + 1);
+			vector_Fahrzeug.push_back(std::move(PKWs));
+		}
 	}
 
-	for(int i = 1; i <= iCountFahrrad; i++)
+	if(iCountFahrrad > 0)
 	{
-		std::string sName = "Fahrrad" + std::to_string(i);
-		std::unique_ptr<Fahrrad> Bikes = std::make_unique<Fahrrad>(sName, rand() % 5 * 5 + 5);
-		vector_Fahrzeug.push_back(std::move(Bikes));
+		for(int i = 1; i <= iCountFahrrad; i++)
+		{
+			std::string sName = "Fahrrad" + std::to_string(i);
+			std::unique_ptr<Fahrrad> Bikes = std::make_unique<Fahrrad>(sName, rand() % 5 * 5 + 5);
+			vector_Fahrzeug.push_back(std::move(Bikes));
+		}
 	}
-
 	double dSchritte;
 	std::cout << "Bitte Anzahl Zeitschritte eingeben: ";
 	std::cin >> dSchritte;
@@ -99,19 +132,15 @@ void vAufgabe_2()
 
 	for(int i = 0; i <= dSchritte; i++)
 	{
-		double dDeltaT = rand() % 180;
+		double dDeltaT = rand() % 210;
 		dDeltaT /= 60;
 		dGlobaleZeit += dDeltaT;
-		std::cout << dDeltaT;
-		std::cout << std::endl;
-		vector_Fahrzeug.at(1)->vKopf();
-		std::cout << std::endl;
+		vector_Fahrzeug.at(0)->vKopf();
 		for(auto &Fahrzeug : vector_Fahrzeug)
 		{
-			if((int)Fahrzeug->getdZeit() / 3 < (int) dGlobaleZeit / 3) {Fahrzeug->dTanken(1000); std::cout << std::endl;}
+			if((int)Fahrzeug->getdZeit() / 3 < (int) dGlobaleZeit / 3) {Fahrzeug->dTanken(); std::cout << std::endl;}
 			Fahrzeug->vSimulieren();
 			Fahrzeug->vAusgeben();
-			std::cout << std::endl;
 		}
 	}
 
@@ -120,45 +149,15 @@ void vAufgabe_2()
 
 int main(void)
 {
+#if TEST == 1
+
+#endif
+	std::srand(std::time(NULL));//
 	//vAufgabe_1();
 	//vAufgabe_1a();
-	vAufgabe_2();
-//	PKW Auto("Auto", 80, 50, 4.5);
-//
-//	std::cout << "\n\n";
-//	Auto.vKopf();
-//	std::cout << "\n";
-//	Auto.vAusgeben();
-//
-//	dGlobaleZeit = 2.5;
-//	Auto.vSimulieren();
-//
-//	std::cout << "\n\n";
-//	Auto.vKopf();
-//	std::cout << "\n";
-//	Auto.vAusgeben();
-//
-//	Auto.dTanken(3);
-//
-//	std::cout << "\n\n";
-//	Auto.vKopf();
-//	std::cout << "\n";
-//	Auto.vAusgeben();
-//	Fahrrad Rad("Rad", 15);
-//	std::cout << "\n\n";
-//	Rad.vKopf();
-//	std::cout << "\n";
-//	Rad.vAusgeben();
-//
-//	for(int i = 1; i < 10; i++)
-//	{
-//		dGlobaleZeit += 1;
-//		Rad.vSimulieren();
-//
-//		std::cout << "\n\n";
-//		Rad.vKopf();
-//		std::cout << "\n";
-//		Rad.vAusgeben();
-//	}
+	//vAufgabe_2();
+	PKW PKW("Auto", 30, 30 ,30);
+	PKW.vKopf();
+	std::cout << std::endl << PKW;
 }
 

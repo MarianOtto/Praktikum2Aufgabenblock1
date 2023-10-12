@@ -7,12 +7,15 @@
 
 #include "PKW.h"
 
+//BEGIN Constructors etc.
+
 PKW::PKW()
 :Fahrzeug::Fahrzeug(),
  p_dVerbrauch(4.5),
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
  {
+#if DEBUG == 1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -21,6 +24,7 @@ PKW::PKW()
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
 			" | Inhalt: " 		<< this->	p_dTankinhalt <<
 			std::endl;
+#endif
 }
 
 PKW::PKW(std::string sName)
@@ -29,6 +33,7 @@ PKW::PKW(std::string sName)
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
  {
+#if DEBUG == 1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -37,6 +42,7 @@ PKW::PKW(std::string sName)
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
 			" | Inhalt: " 		<< this->	p_dTankinhalt <<
 			std::endl;
+#endif
 }
 
 PKW::PKW(std::string sName, double dmaxGeschwindigkeit)
@@ -45,6 +51,7 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit)
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
 {
+#if DEBUG == 1
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -53,6 +60,7 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit)
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
 			" | Inhalt: " 		<< this->	p_dTankinhalt <<
 			std::endl;
+#endif
 }
 
 PKW::PKW(std::string sName, double dmaxGeschwindigkeit, double dTankvolumen, double dVerbrauch)
@@ -61,16 +69,58 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit, double dTankvolumen, dou
  p_dTankvolumen(dTankvolumen),
  p_dTankinhalt(dTankvolumen / 2)
 {
+#if DEBUG == 1
 	std::cout <<
 			" | Volumen: " 		<< this->	p_dTankvolumen <<
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
 			" | Inhalt: " 		<< this->	p_dTankinhalt <<
 			std::endl;
+#endif
 }
 
 PKW::~PKW()
 {
+#if DEBUG == 1
+	std::cout <<
+			"Destroyed | name: " 	<< this-> p_sName <<
+			" | ID: "				<< this-> p_iID <<
+			std::endl;
+#endif
 }
+
+//END Constructors etc.
+
+//BEGIN Getters
+
+double PKW::getdTankvolumen() const
+{
+	return p_dTankvolumen;
+}
+
+double PKW::getdVerbrauch() const
+{
+	return p_dVerbrauch;
+}
+
+//END Getters
+
+//BEGIN Operator Overload
+
+void PKW::operator=(const Fahrzeug& Fahrzeug)
+{
+	Fahrzeug::operator=(Fahrzeug);
+}
+
+void PKW::operator=(const PKW& PKW)
+{
+	Fahrzeug::operator=(PKW);
+	this->p_dTankvolumen = PKW.p_dTankvolumen;
+	this->p_dVerbrauch = PKW.p_dVerbrauch;
+}
+
+//END Operator Overload
+
+//BEGIN Other
 
 void PKW::vKopf() const
 {
@@ -107,7 +157,7 @@ void PKW::vSimulieren()
 	}
 }
 
-double PKW::dTanken(double dMenge = std::numeric_limits<double>::infinity())
+double PKW::dTanken(double dMenge)
 {
 	if(dMenge > p_dTankvolumen - p_dTankinhalt)
 	{
@@ -118,7 +168,7 @@ double PKW::dTanken(double dMenge = std::numeric_limits<double>::infinity())
 	return dMenge;
 }
 
-
+//END Other
 
 
 

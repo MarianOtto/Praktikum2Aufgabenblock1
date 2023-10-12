@@ -15,20 +15,33 @@ class PKW: public Fahrzeug
 {
 private:
 	double p_dVerbrauch;
-	const double p_dTankvolumen;
+	double p_dTankvolumen;
 	double p_dTankinhalt;
 
 public:
+	//Constructors etc.
 	PKW();
 	PKW(std::string sName);
 	PKW(std::string sName, double maxGeschwindigkeit);
 	PKW(std::string sName, double maxGeschwindigkeit, double Tankvolumen, double Verbrauch);
 	virtual ~PKW();
+	PKW(const PKW&) = delete;
 
-	void vKopf() const;
-	void vAusgeben() const;
-	void vSimulieren();
-	double dTanken(double dMenge);
+	//Getters
+
+	double getdTankvolumen() const;
+	double getdVerbrauch() const;
+
+	//Operator Overload
+	void operator=(const Fahrzeug& Fahrzeug);
+	void operator=(const PKW& PKW);
+
+	//Other
+	void vKopf() const override;
+	void vAusgeben() const override;
+	void vSimulieren() override;
+	double dTanken(double dMenge = std::numeric_limits<double>::infinity()) override;
+
 };
 
 #endif /* PKW_H_ */
