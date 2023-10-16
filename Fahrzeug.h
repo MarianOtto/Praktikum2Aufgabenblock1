@@ -6,13 +6,14 @@
  */
 #ifndef FAHRZEUG_H_
 #define FAHRZEUG_H_
-#define DEBUG 0
+#define DEBUG
 
 #include <iomanip>
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 #include <math.h>
+#include <memory>
 
 extern double dGlobaleZeit;
 class Fahrzeug

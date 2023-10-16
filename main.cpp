@@ -126,12 +126,12 @@ void vAufgabe_2()
 			vector_Fahrzeug.push_back(std::move(Bikes));
 		}
 	}
-	double dSchritte;
+	int iSchritte;
 	std::cout << "Bitte Anzahl Zeitschritte eingeben: ";
-	std::cin >> dSchritte;
+	std::cin >> iSchritte;
 	std::cout << std::endl;
 
-	for(int i = 0; i <= dSchritte; i++)
+	for(int i = 0; i <= iSchritte; i++)
 	{
 		double dDeltaT = rand() % 210;
 		dDeltaT /= 60;
@@ -143,6 +143,7 @@ void vAufgabe_2()
 			if((int)Fahrzeug->getdZeit() / 3 < (int) dGlobaleZeit / 3) {Fahrzeug->dTanken(); std::cout << std::endl;}
 			Fahrzeug->vSimulieren();
 			Fahrzeug->vAusgeben();
+			std::cout << std::endl;
 		}
 	}
 }

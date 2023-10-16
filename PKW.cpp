@@ -15,7 +15,7 @@ PKW::PKW()
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
  {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -33,7 +33,7 @@ PKW::PKW(std::string sName)
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
  {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -51,7 +51,7 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit)
  p_dTankvolumen(55),
  p_dTankinhalt(p_dTankvolumen / 2)
 {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -69,7 +69,7 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit, double dTankvolumen, dou
  p_dTankvolumen(dTankvolumen),
  p_dTankinhalt(dTankvolumen / 2)
 {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			" | Volumen: " 		<< this->	p_dTankvolumen <<
 			" | Verbrauch: " 	<< this->	p_dVerbrauch <<
@@ -80,12 +80,6 @@ PKW::PKW(std::string sName, double dmaxGeschwindigkeit, double dTankvolumen, dou
 
 PKW::~PKW()
 {
-#if DEBUG == 1
-	std::cout <<
-			"Destroyed | name: " 	<< this-> p_sName <<
-			" | ID: "				<< this-> p_iID <<
-			std::endl;
-#endif
 }
 
 //END Constructors etc.
@@ -150,9 +144,11 @@ void PKW::vSimulieren()
 		double dDeltaS = dDeltaT * p_dMaxGeschwindigkeit;
 		p_dGesamtStrecke += dDeltaS;
 		p_dTankinhalt -= p_dVerbrauch * dDeltaS / 100;
+		if(p_dTankinhalt <0) p_dTankinhalt = 0;
 		p_dGesamtVerbrauch += p_dVerbrauch * dDeltaS / 100;
 		p_dZeit = dGlobaleZeit;
 		p_dGesamtZeit = dGlobaleZeit;
+
 		}
 	}
 }

@@ -12,45 +12,20 @@
 Fahrrad::Fahrrad()
 :Fahrzeug::Fahrzeug()
 {
-#if DEBUG == 1
-	std::cout <<
-			"created | name: " 	<< this->p_sName 	<<
-			" | ID: " 			<< this->p_iID 		<<
-			std::endl;
-#endif
 }
 
 Fahrrad::Fahrrad(std::string sName)
 :Fahrzeug::Fahrzeug(sName)
 {
-#if DEBUG == 1
-	std::cout <<
-			"created | name: " 	<< this->p_sName 	<<
-			" | ID: " 			<< this->p_iID 		<<
-			std::endl;
-#endif
 }
 
 Fahrrad::Fahrrad(std::string sName, double maxGeschwindigkeit)
 :Fahrzeug::Fahrzeug(sName, maxGeschwindigkeit)
 {
-#if DEBUG == 1
-	std::cout <<
-			"created | name: " 	<< this->p_sName 				<<
-			" | ID: " 			<< this-> p_iID 				<<
-			" | MaxGeschw.: " 	<< this->p_dMaxGeschwindigkeit 	<<
-			std::endl;
-#endif
 }
 
 Fahrrad::~Fahrrad()
 {
-#if DEBUG == 1
-	std::cout <<
-			"Destroyed | name: " 	<< this-> p_sName <<
-			" | ID: "				<< this-> p_iID <<
-			std::endl;
-#endif
 }
 
 //END Constructors etc.

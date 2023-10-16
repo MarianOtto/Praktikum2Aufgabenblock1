@@ -23,7 +23,7 @@ Fahrzeug::Fahrzeug()
  p_dGesamtVerbrauch(0),
  p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
-#if DEBUG ==1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -42,7 +42,7 @@ Fahrzeug::Fahrzeug(std::string sName)
  p_dGesamtVerbrauch(0),
  p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -61,7 +61,7 @@ Fahrzeug::Fahrzeug(std::string sName, double dmaxGeschwindigkeit)
  p_dGesamtVerbrauch(0),
  p_dGeschwindigkeit(p_dMaxGeschwindigkeit)
 {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"created | name: " 	<< this->	p_sName <<
 			" | ID: " 			<< this-> 	p_iID <<
@@ -72,7 +72,7 @@ Fahrzeug::Fahrzeug(std::string sName, double dmaxGeschwindigkeit)
 
 Fahrzeug::~Fahrzeug()
 {
-#if DEBUG == 1
+#ifdef DEBUG
 	std::cout <<
 			"Destroyed | name: " 	<< this-> p_sName <<
 			" | ID: "				<< this-> p_iID <<
