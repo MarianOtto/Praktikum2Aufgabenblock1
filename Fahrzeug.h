@@ -6,7 +6,7 @@
  */
 #ifndef FAHRZEUG_H_
 #define FAHRZEUG_H_
-#define DEBUG
+//#define DEBUG
 
 #include <iomanip>
 #include <iostream>
@@ -41,14 +41,14 @@ public:
 	Fahrzeug(const Fahrzeug&) = delete;
 
 	//Getter
-	double getdZeit() const;
-	double getdGesamtStrecke() const;
-	std::string getsName() const;
-	double getdMaxGeschwindigkeit() const;
+	double dGetZeit() const;
+	double dGetGesamtStrecke() const;
+	std::string sGetName() const;
+	double dGetMaxGeschwindigkeit() const;
 
 	//Setters
-	void setsName(std::string Name);
-	void setdMaxGeschwindigkeit(double MaxGeschwindigkeit);
+	void setName(std::string Name);
+	void setMaxGeschwindigkeit(double MaxGeschwindigkeit);
 
 	//Operator Overload
 	virtual bool operator<(const Fahrzeug& Fahrzeug);
@@ -59,10 +59,10 @@ public:
 	virtual void vAusgeben() const;
 	virtual void vSimulieren();
 	virtual double dTanken(double dMenge = std::numeric_limits<double>::infinity());
-	bool EpsilonEquals(double dNum1, double dNum2);
+	bool bEquals(double dNum1, double dNum2);
 	virtual double dGeschwindigkeit();
 };
 
-
+std::ostream& operator<<(std::ostream& ostr, const Fahrzeug& Fahrzeug);
 
 #endif /* FAHRZEUG_H_ */

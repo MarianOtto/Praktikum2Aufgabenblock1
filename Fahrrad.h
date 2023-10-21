@@ -21,8 +21,6 @@ public:
 	Fahrrad(const Fahrrad&) = delete;
 
 	//Other
-	void vKopf() const;
-	void vAusgeben() const override;
 	double dGeschwindigkeit() override;
 };
 

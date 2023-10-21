@@ -84,22 +84,22 @@ Fahrzeug::~Fahrzeug()
 
 //BEGIN Getters
 
-double Fahrzeug::getdZeit() const
+double Fahrzeug::dGetZeit() const
 {
 	return p_dZeit;
 }
 
-double Fahrzeug::getdGesamtStrecke() const
+double Fahrzeug::dGetGesamtStrecke() const
 {
 	return p_dGesamtStrecke;
 }
 
-std::string Fahrzeug::getsName() const
+std::string Fahrzeug::sGetName() const
 {
 	return p_sName;
 }
 
-double Fahrzeug::getdMaxGeschwindigkeit() const
+double Fahrzeug::dGetMaxGeschwindigkeit() const
 {
 	return p_dMaxGeschwindigkeit;
 }
@@ -107,12 +107,12 @@ double Fahrzeug::getdMaxGeschwindigkeit() const
 
 //BEGIN Setters
 
-void Fahrzeug::setsName(std::string Name)
+void Fahrzeug::setName(std::string Name)
 {
 	p_sName = Name;
 }
 
-void Fahrzeug::setdMaxGeschwindigkeit(double MaxGeschwindigkeit)
+void Fahrzeug::setMaxGeschwindigkeit(double MaxGeschwindigkeit)
 {
 	p_dMaxGeschwindigkeit = MaxGeschwindigkeit;
 }
@@ -122,7 +122,7 @@ void Fahrzeug::setdMaxGeschwindigkeit(double MaxGeschwindigkeit)
 
 bool Fahrzeug::operator<(const Fahrzeug& Fahrzeug2)
 {
-	if(p_dGesamtStrecke < Fahrzeug2.getdGesamtStrecke())
+	if(p_dGesamtStrecke < Fahrzeug2.dGetGesamtStrecke())
 	{
 		return true;
 	}
@@ -131,8 +131,8 @@ bool Fahrzeug::operator<(const Fahrzeug& Fahrzeug2)
 
 void Fahrzeug::operator=(const Fahrzeug& Fahrzeug)
 {
-	p_dMaxGeschwindigkeit = Fahrzeug.getdMaxGeschwindigkeit();
-	p_sName = Fahrzeug.getsName();
+	p_dMaxGeschwindigkeit = Fahrzeug.dGetMaxGeschwindigkeit();
+	p_sName = Fahrzeug.sGetName();
 }
 
 //END Operator Overload
@@ -184,7 +184,7 @@ double Fahrzeug::dTanken(double dMenge)
 	return 0;
 }
 
-bool Fahrzeug::EpsilonEquals(double dNum1, double dNum2)
+bool Fahrzeug::bEquals(double dNum1, double dNum2)
 {
 	if(abs(dNum1 - dNum2) < std::pow(10,-25.0))
 	{
@@ -201,5 +201,9 @@ double Fahrzeug::dGeschwindigkeit()
 
 //END Other
 
-
+std::ostream& operator<<(std::ostream& ostr, const Fahrzeug& Fahrzeug)
+{
+	Fahrzeug.vAusgeben();
+	return ostr;
+}
 

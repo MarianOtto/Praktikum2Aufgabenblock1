@@ -86,12 +86,12 @@ PKW::~PKW()
 
 //BEGIN Getters
 
-double PKW::getdTankvolumen() const
+double PKW::dGetTankvolumen() const
 {
 	return p_dTankvolumen;
 }
 
-double PKW::getdVerbrauch() const
+double PKW::dGetVerbrauch() const
 {
 	return p_dVerbrauch;
 }
@@ -138,7 +138,7 @@ void PKW::vSimulieren()
 {
 	if(dGlobaleZeit != p_dZeit)
 	{
-		if(!EpsilonEquals(p_dTankinhalt, 0))
+		if(!bEquals(p_dTankinhalt, 0))
 		{
 		double dDeltaT = dGlobaleZeit - p_dZeit;
 		double dDeltaS = dDeltaT * p_dMaxGeschwindigkeit;

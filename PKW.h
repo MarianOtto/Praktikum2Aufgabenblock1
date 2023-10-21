@@ -29,8 +29,8 @@ public:
 
 	//Getters
 
-	double getdTankvolumen() const;
-	double getdVerbrauch() const;
+	double dGetTankvolumen() const;
+	double dGetVerbrauch() const;
 
 	//Operator Overload
 	void operator=(const Fahrzeug& Fahrzeug);

@@ -32,19 +32,9 @@ Fahrrad::~Fahrrad()
 
 //BEGIN Other
 
-void Fahrrad::vKopf() const
-{
-	Fahrzeug::vKopf();
-}
-
-void Fahrrad::vAusgeben() const
-{
-	Fahrzeug::vAusgeben();
-}
-
 double Fahrrad::dGeschwindigkeit()
 {
-	int dDeltaS = p_dGesamtStrecke / 20;
+	uint8_t dDeltaS = p_dGesamtStrecke / 20;
 	p_dGeschwindigkeit = p_dMaxGeschwindigkeit * std::pow(0.9, dDeltaS);
 	if(p_dGeschwindigkeit < 12)
 	{
